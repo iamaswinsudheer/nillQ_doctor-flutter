@@ -1,0 +1,52 @@
+[
+    {
+        "doctor_name": "Dr. Smith",
+        "hospital_name": "City Hospital",
+        "remark": "Patient's condition seems to be improving. Follow up in a week. Continue with prescribed medication and maintain a healthy lifestyle."
+    },
+    {
+        "doctor_name": "Dr. Johnson",
+        "hospital_name": "Central Medical Center",
+        "remark": "Patient requires further tests to determine the cause of symptoms. Blood work and imaging studies are recommended to provide a comprehensive diagnosis."
+    },
+    {
+        "doctor_name": "Dr. Lee",
+        "hospital_name": "Unity Health Clinic",
+        "remark": "Prescribed medication for immediate relief. Advised lifestyle changes for long-term management. Stress the importance of regular exercise and a balanced diet."
+    },
+    {
+        "doctor_name": "Dr. Martinez",
+        "hospital_name": "Sunset Medical Group",
+        "remark": "Patient's vitals are stable. Scheduled for a follow-up appointment next month. Educated patient on warning signs to monitor until next visit."
+    },
+    {
+        "doctor_name": "Dr. Patel",
+        "hospital_name": "Oakridge General Hospital",
+        "remark": "Patient needs to monitor blood pressure regularly. Prescribed medication accordingly. Discussed potential side effects and when to seek medical attention."
+    },
+    {
+        "doctor_name": "Dr. Nguyen",
+        "hospital_name": "Riverfront Clinic",
+        "remark": "Suggested dietary modifications to alleviate symptoms. Follow-up appointment in two weeks. Provided educational materials for better understanding."
+    },
+    {
+        "doctor_name": "Dr. Taylor",
+        "hospital_name": "Golden Gate Medical Center",
+        "remark": "Patient's condition requires immediate intervention. Admitted for further observation and treatment. Communicated with specialists for collaborative care."
+    },
+    {
+        "doctor_name": "Dr. Brown",
+        "hospital_name": "Lakeview Hospital",
+        "remark": "Referred the patient to a specialist for further evaluation and management. Provided detailed referral information and coordinated appointments."
+    },
+    {
+        "doctor_name": "Dr. Gonzalez",
+        "hospital_name": "Pinecrest Health Center",
+        "remark": "Patient's progress is satisfactory. Continue with prescribed medication. Encouraged patient to maintain regular follow-up visits for ongoing assessment."
+    },
+    {
+        "doctor_name": "Dr. Wilson",
+        "hospital_name": "Greenwood Clinic",
+        "remark": "Educated the patient about preventive measures. Scheduled for a follow-up visit in three months. Provided resources for additional support and information."
+    }
+]

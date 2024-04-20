@@ -1,0 +1,19 @@
+{
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "gender": "Male",
+    "phoneNumber": "+1122334455",
+    "email": "michael.johnson@example.com",
+    "age": "45 Years",
+    "degrees": "MBBS, PhD",
+    "registerNumber": "67890",
+    "yearOfRegistration": "2005",
+    "stateMedicalCouncil": "State Medical Association",
+    "experience": "15 years",
+    "address": "789 Oak St",
+    "zipCode": "67890",
+    "city": "Othertown",
+    "state": "Province",
+    "country": "Country Y"
+  }
+  

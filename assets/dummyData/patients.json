@@ -1,0 +1,92 @@
+[
+    {
+        "name": "John Doe",
+        "age": 30,
+        "gender": "Male",
+        "time": "9:00 am",
+        "reason": "Headache",
+        "symptoms": "Experiencing frequent headaches for the past week, accompanied by sensitivity to light and nausea.",
+        "blood_group": "A+"
+    },
+    {
+        "name": "Emily Smith",
+        "age": 25,
+        "gender": "Female",
+        "time": "9:00 am",
+        "reason": "Fever",
+        "symptoms": "Has had a persistent fever of 101°F for the past two days, along with body aches and fatigue.",
+        "blood_group": "B-"
+    },
+    {
+        "name": "Michael Johnson",
+        "age": 35,
+        "gender": "Male",
+        "time": "9:00 am",
+        "reason": "Cough",
+        "symptoms": "Persistent dry cough for the last week, accompanied by slight shortness of breath and fatigue.",
+        "blood_group": "O+"
+    },
+    {
+        "name": "Sarah Williams",
+        "age": 28,
+        "gender": "Female",
+        "time": "9:30 am",
+        "reason": "Sore Throat",
+        "symptoms": "Experiencing throat pain and difficulty swallowing, accompanied by swollen glands in the neck.",
+        "blood_group": "AB+"
+    },
+    {
+        "name": "David Brown",
+        "age": 40,
+        "gender": "Male",
+        "time": "9:30 am",
+        "reason": "Back Pain",
+        "symptoms": "Persistent lower back pain for the past month, worsened with movement and prolonged sitting.",
+        "blood_group": "A-"
+    },
+    {
+        "name": "Jessica Davis",
+        "age": 22,
+        "gender": "Female",
+        "time": "9:30 am",
+        "reason": "Fatigue",
+        "symptoms": "Feeling unusually tired and lethargic for the past two weeks, despite adequate rest.",
+        "blood_group": "O-"
+    },
+    {
+        "name": "Matthew Miller",
+        "age": 33,
+        "gender": "Male",
+        "time": "10:00 am",
+        "reason": "Indigestion",
+        "symptoms": "Experiencing discomfort and bloating after meals, along with occasional heartburn.",
+        "blood_group": "B+"
+    },
+    {
+        "name": "Amanda Wilson",
+        "age": 27,
+        "gender": "Female",
+        "time": "10:00 am",
+        "reason": "Allergy",
+        "symptoms": "Experiencing itchy eyes, sneezing, and nasal congestion, especially in response to pollen.",
+        "blood_group": "AB-"
+    },
+    {
+        "name": "Christopher Moore",
+        "age": 38,
+        "gender": "Male",
+        "time": "10:00 am",
+        "reason": "Insomnia",
+        "symptoms": "Difficulty falling asleep and staying asleep, resulting in feeling tired and irritable during the day.",
+        "blood_group": "O+"
+    },
+    {
+        "name": "Stephanie Taylor",
+        "age": 31,
+        "gender": "Female",
+        "time": "10:30 am",
+        "reason": "Anxiety",
+        "symptoms": "Experiencing feelings of worry, nervousness, and restlessness, along with difficulty concentrating.",
+        "blood_group": "A+"
+    }
+]
