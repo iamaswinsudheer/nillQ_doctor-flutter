@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nillq_doctor_app/screens/home/appointmentHistory.dart';
+import 'package:nillq_doctor_app/screens/home/consultation/schedules.dart';
 import 'package:nillq_doctor_app/screens/home/futureAppointments.dart';
 import 'package:nillq_doctor_app/screens/home/home.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
@@ -26,15 +25,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   static const List<Widget> _screens = <Widget>[
     Home(),
-    FutureAppointments(),
-    AppointmentHistory()
+    AppointmentSchedules(),
+    FutureAppointments()
   ];
 
   @override
   Widget build(BuildContext context) {
-    if(FirebaseAuth.instance.currentUser != null){
-      print(FirebaseAuth.instance.currentUser?.uid);
-    }
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -46,12 +42,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.date_range), label: 'Future appointments'),
+              icon: Icon(Icons.people), label: 'Appointments'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.history), label: 'Appointment history'),
+              icon: Icon(Icons.date_range), label: 'Future'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: themeColor,
@@ -59,8 +56,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         onTap: _onItemTapped,
         showUnselectedLabels: true,
         showSelectedLabels: true,
-        // selectedFontSize: 11.0,
-        // unselectedFontSize: 11.0,
         elevation: 0.0,
       ),
     );

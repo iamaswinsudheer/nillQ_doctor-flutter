@@ -3,6 +3,191 @@ import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
 import 'package:intl/intl.dart';
 
+//Tiles for listing appointment schedule in home screen
+class ScheduleTiles extends StatelessWidget {
+  final String time;
+  final String totalTokens;
+  final String bookedTokens;
+  ScheduleTiles(
+      {required this.time,
+      required this.totalTokens,
+      required this.bookedTokens});
+
+  final List<Color> tileBgColors = [
+    Color.fromARGB(255, 84, 124, 225),
+    Color.fromARGB(255, 5, 184, 169),
+    Color.fromARGB(255, 130, 132, 130),
+    Color.fromARGB(255, 192, 108, 6)
+  ];
+
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Container(
+      width: screenSize.width,
+      height: screenSize.height * 0.17,
+      decoration: BoxDecoration(
+          color: tileBgColors[int.parse(bookedTokens) % 4],
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      margin: EdgeInsets.only(top: screenSize.height * 0.01),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+            screenSize.width * 0.05,
+            screenSize.height * 0.02,
+            screenSize.width * 0.0,
+            screenSize.height * 0.02),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      time,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+              ),
+              PopupMenuButton(
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: Colors.white,
+                  ),
+                  itemBuilder: (BuildContext context) {
+                    return <PopupMenuEntry>[
+                      PopupMenuItem(
+                          child: Text(
+                        'Reschedule',
+                        style:
+                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                      )),
+                      PopupMenuItem(
+                          child: Text(
+                        'Cancel',
+                        style:
+                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                      )),
+                      PopupMenuItem(
+                          child: Text(
+                        'Delete',
+                        style:
+                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                      )),
+                    ];
+                  }),
+            ]),
+            Text(
+              'Total tokens : $totalTokens',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Booked tokens : $bookedTokens',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//custom container for scheduled appointmnets in appointment
+class TilesForSchedule extends StatelessWidget {
+  final String time;
+  final String totalTokens;
+  final String bookedTokens;
+  final VoidCallback onTap;
+  TilesForSchedule(
+      {required this.time,
+      required this.totalTokens,
+      required this.bookedTokens,
+      required this.onTap});
+
+  final List<Color> tileBgColors = [
+    Color.fromARGB(255, 84, 124, 225),
+    Color.fromARGB(255, 5, 184, 169),
+    Color.fromARGB(255, 130, 132, 130),
+    Color.fromARGB(255, 192, 108, 6)
+  ];
+
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Container(
+      width: screenSize.width,
+      height: screenSize.height * 0.17,
+      decoration: BoxDecoration(
+          color: tileBgColors[int.parse(bookedTokens) % 4],
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      margin: EdgeInsets.only(top: screenSize.height * 0.01),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: screenSize.height * 0.02,
+              horizontal: screenSize.width * 0.05),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  time,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              Text(
+                'Total tokens : $totalTokens',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Booked tokens : $bookedTokens',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 //custom tile for today's appointments displayed in home screen
 class CustomTileForAppointments extends StatelessWidget {
   final String name;
@@ -49,11 +234,11 @@ class CustomTileForAppointments extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: ConstrainedBox(
-                          constraints:
-                              BoxConstraints(maxWidth: screenSize.width * 0.6),
+                      ConstrainedBox(
+                        constraints:
+                            BoxConstraints(maxWidth: screenSize.width * 0.5),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
                           child: Text(
                             name,
                             overflow: TextOverflow.ellipsis,
@@ -120,106 +305,106 @@ class CustomTileForAppointments extends StatelessWidget {
   }
 }
 
-//custom tile for scheduled appointments displayed in schedule appointments screen
-class CustomCardforScheduledAppointments extends StatelessWidget {
-  final String days;
-  final String timeSlots;
-  final VoidCallback rescheduleTap;
-  final VoidCallback viewTap;
-  CustomCardforScheduledAppointments(
-      {required this.days,
-      required this.timeSlots,
-      required this.rescheduleTap,
-      required this.viewTap});
+// //custom tile for scheduled appointments displayed in schedule appointments screen
+// class CustomCardforScheduledAppointments extends StatelessWidget {
+//   final String days;
+//   final String timeSlots;
+//   final VoidCallback rescheduleTap;
+//   final VoidCallback viewTap;
+//   CustomCardforScheduledAppointments(
+//       {required this.days,
+//       required this.timeSlots,
+//       required this.rescheduleTap,
+//       required this.viewTap});
 
-  @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: screenSize.width * 0.03,
-          vertical: screenSize.height * 0.02),
-      margin: EdgeInsets.symmetric(
-          horizontal: screenSize.width * 0.04,
-          vertical: screenSize.height * 0.01),
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Days : ',
-            style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey[800],
-                fontWeight: FontWeight.bold),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-          Text(
-            days,
-            style: TextStyle(color: Colors.grey[700]),
-          ),
-          SizedBox(
-            height: screenSize.height * 0.01,
-          ),
-          Text(
-            'TimeSlots :',
-            style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey[800],
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            timeSlots,
-            style: TextStyle(color: Colors.grey[700]),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-          Divider(
-            height: screenSize.height * 0.03,
-          ),
-          Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: screenSize.height * 0.05,
-                child: ElevatedButton(
-                  onPressed: rescheduleTap,
-                  child: Text(
-                    'Reschedule',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(),
-                      primary: themeColor,
-                      minimumSize: const Size.fromHeight(50.0)),
-                ),
-              )),
-          SizedBox(
-            height: screenSize.height * 0.01,
-          ),
-          Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: screenSize.height * 0.05,
-                child: ElevatedButton(
-                  onPressed: viewTap,
-                  child: Text(
-                    'View',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(),
-                      primary: themeColor,
-                      minimumSize: const Size.fromHeight(50.0)),
-                ),
-              ))
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     Size screenSize = MediaQuery.of(context).size;
+//     return Container(
+//       padding: EdgeInsets.symmetric(
+//           horizontal: screenSize.width * 0.03,
+//           vertical: screenSize.height * 0.02),
+//       margin: EdgeInsets.symmetric(
+//           horizontal: screenSize.width * 0.04,
+//           vertical: screenSize.height * 0.01),
+//       decoration: BoxDecoration(
+//           border: Border.all(color: Colors.grey),
+//           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(
+//             'Days : ',
+//             style: TextStyle(
+//                 fontSize: 16.0,
+//                 color: Colors.grey[800],
+//                 fontWeight: FontWeight.bold),
+//             overflow: TextOverflow.ellipsis,
+//             maxLines: 1,
+//           ),
+//           Text(
+//             days,
+//             style: TextStyle(color: Colors.grey[700]),
+//           ),
+//           SizedBox(
+//             height: screenSize.height * 0.01,
+//           ),
+//           Text(
+//             'TimeSlots :',
+//             style: TextStyle(
+//                 fontSize: 16.0,
+//                 color: Colors.grey[800],
+//                 fontWeight: FontWeight.bold),
+//           ),
+//           Text(
+//             timeSlots,
+//             style: TextStyle(color: Colors.grey[700]),
+//             overflow: TextOverflow.ellipsis,
+//             maxLines: 1,
+//           ),
+//           Divider(
+//             height: screenSize.height * 0.03,
+//           ),
+//           Align(
+//               alignment: Alignment.center,
+//               child: SizedBox(
+//                 height: screenSize.height * 0.05,
+//                 child: ElevatedButton(
+//                   onPressed: rescheduleTap,
+//                   child: Text(
+//                     'Reschedule',
+//                     style: TextStyle(color: Colors.white, fontSize: 16.0),
+//                   ),
+//                   style: ElevatedButton.styleFrom(
+//                       shape: RoundedRectangleBorder(),
+//                       primary: themeColor,
+//                       minimumSize: const Size.fromHeight(50.0)),
+//                 ),
+//               )),
+//           SizedBox(
+//             height: screenSize.height * 0.01,
+//           ),
+//           Align(
+//               alignment: Alignment.center,
+//               child: SizedBox(
+//                 height: screenSize.height * 0.05,
+//                 child: ElevatedButton(
+//                   onPressed: viewTap,
+//                   child: Text(
+//                     'View',
+//                     style: TextStyle(color: Colors.white, fontSize: 16.0),
+//                   ),
+//                   style: ElevatedButton.styleFrom(
+//                       shape: RoundedRectangleBorder(),
+//                       primary: themeColor,
+//                       minimumSize: const Size.fromHeight(50.0)),
+//                 ),
+//               ))
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 //custom container for showing patient's previous reports
 
@@ -269,9 +454,10 @@ class CustomContainerForReports extends StatelessWidget {
   }
 }
 
-//custom container for date picker
+//custom container for time picker
 class CustomContainerForTimePicker extends StatefulWidget {
-  final void Function(String startTime, String endTime) onTap;
+  final void Function(String startTime, String endTime, String noOfTokens)
+      onTap;
   final VoidCallback onClose;
 
   CustomContainerForTimePicker({required this.onTap, required this.onClose});
@@ -301,6 +487,8 @@ class _CustomContainerForTimePickerState
   late String formattedStartTime;
 
   late String formattedEndTime;
+
+  TextEditingController _tokenController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -359,7 +547,7 @@ class _CustomContainerForTimePickerState
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: themeColor,
+                        backgroundColor : themeColor,
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)))),
@@ -404,7 +592,7 @@ class _CustomContainerForTimePickerState
                 )),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: themeColor,
+                        backgroundColor: themeColor,
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)))),
@@ -439,6 +627,43 @@ class _CustomContainerForTimePickerState
           SizedBox(
             height: screenSize.height * 0.04,
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.04),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Number of tokens',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+                Expanded(
+                    child: SizedBox(
+                  height: 50.0,
+                  child: TextFormField(
+                    controller: _tokenController,
+                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.grey,
+                    decoration: InputDecoration(
+                        hintText: 'No of tokens',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: themeColor)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: themeColor))),
+                  ),
+                ))
+              ],
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height * 0.04,
+          ),
           SizedBox(
             height: 45.0,
             child: Padding(
@@ -447,12 +672,13 @@ class _CustomContainerForTimePickerState
               child: ElevatedButton(
                   onPressed: () {
                     if (selectedStartTime & selectedEndTime) {
-                      widget.onTap(formattedStartTime, formattedEndTime);
+                      widget.onTap(formattedStartTime, formattedEndTime,
+                          _tokenController.text);
                     }
                   },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      primary: themeColor,
+                      backgroundColor: themeColor,
                       shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0)))),
@@ -475,10 +701,14 @@ class _CustomContainerForTimePickerState
 class CustomTileForSelectedTimeSlots extends StatelessWidget {
   final String startTime;
   final String endTime;
+  final String tokens;
   final VoidCallback onTap;
 
   CustomTileForSelectedTimeSlots(
-      {required this.startTime, required this.endTime, required this.onTap});
+      {required this.startTime,
+      required this.endTime,
+      required this.onTap,
+      required this.tokens});
 
   @override
   Widget build(BuildContext context) {
@@ -489,8 +719,9 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
           horizontal: screenSize.width * 0.04,
           vertical: screenSize.height * 0.01),
       decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Colors.grey[200]),
+          ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -532,6 +763,13 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
                 style: TextStyle(color: Colors.grey[800]),
               )
             ],
+          ),
+          SizedBox(
+            height: screenSize.height * 0.01,
+          ),
+          Text(
+            'Tokens : $tokens',
+            style: TextStyle(color: Colors.grey[800]),
           )
         ],
       ),

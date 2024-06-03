@@ -12,7 +12,7 @@ class SelectDays extends StatefulWidget {
 }
 
 class _SelectDaysState extends State<SelectDays> {
-  bool _isToday = false;
+  bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -26,82 +26,143 @@ class _SelectDaysState extends State<SelectDays> {
       body: Padding(
         padding: EdgeInsets.symmetric(
             vertical: screenSize.height * 0.01,
-            horizontal: screenSize.width * 0.01),
+            horizontal: screenSize.width * 0.03),
         child: Column(
           children: [
-            Expanded(
-              flex: 9,
-              child: ListView(
-                children: [
-                  CheckboxListTile(
-                      title: Text(
-                        'Today',
-                        style:
-                            TextStyle(color: Colors.grey[800], fontSize: 18.0),
+            ListView(
+              shrinkWrap: true,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.grey[800]!))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Text(
+                            'Today',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[800],
+                                fontSize: 18.0),
+                          )),
+                          Checkbox(
+                              checkColor: Colors.white,
+                              activeColor: themeColor,
+                              value: _isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  _isChecked = value!;
+                                });
+                              })
+                        ],
                       ),
-                      activeColor: themeColor,
-                      value: _isToday,
-                      onChanged: (_) {
-                        setState(() {
-                          _isToday = !_isToday;
-                        });
-                      }),
-                  Divider(
-                    color: Colors.grey[600],
-                    thickness: 0.5,
+                      Text(
+                        'Schedule appointments for today',
+                        style: TextStyle(color: Colors.grey[800]),
+                      ),
+                      SizedBox(
+                        height: screenSize.height * 0.02,
+                      )
+                    ],
                   ),
-                  ListTile(
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.grey[800]!))),
+                  child: InkWell(
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => PickDates()));
                     },
-                    title: Text(
-                      'Pick dates',
-                      style: TextStyle(color: Colors.grey[800], fontSize: 18.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: screenSize.height * 0.02,
+                        ),
+                        Text(
+                          'Pick dates',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.grey[800],
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Schedule appointments for a range of dates',
+                          style: TextStyle(color: Colors.grey[800]),
+                        ),
+                        SizedBox(
+                          height: screenSize.height * 0.02,
+                        )
+                      ],
                     ),
                   ),
-                  Divider(
-                    color: Colors.grey[600],
-                    thickness: 0.5,
-                  ),
-                  ListTile(
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.grey[800]!))),
+                  child: InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => CustomDates()));
                     },
-                    title: Text(
-                      'Custom dates',
-                      style: TextStyle(color: Colors.grey[800], fontSize: 18.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: screenSize.height * 0.02,
+                        ),
+                        Text(
+                          'Custom dates',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.grey[800],
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Customize dates for appointmnets',
+                          style: TextStyle(color: Colors.grey[800]),
+                        ),
+                        SizedBox(
+                          height: screenSize.height * 0.02,
+                        )
+                      ],
                     ),
                   ),
-                  Divider(
-                    color: Colors.grey[600],
-                    thickness: 0.5,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             Expanded(
-              flex: 1,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TimeSlots()));
-                  },
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenSize.width * 0.02,
+                      vertical: screenSize.height * 0.01),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => TimeSlots()));
+                    },
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: themeColor,
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)))),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: themeColor,
-                      minimumSize: const Size.fromHeight(50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
                 ),
               ),
             )

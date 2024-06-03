@@ -33,7 +33,9 @@ class _PickDatesState extends State<PickDates> {
                 fontSize: 18.0,
               ),
             ),
-            SizedBox(height: screenSize.height * 0.04,),
+            SizedBox(
+              height: screenSize.height * 0.04,
+            ),
             TextFormField(
               controller: startDateController,
               decoration: InputDecoration(
@@ -103,21 +105,27 @@ class _PickDatesState extends State<PickDates> {
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TimeSlots()));
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: themeColor,
-                        minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)))),
-                    child: Text(
-                      'Continue',
-                      style: TextStyle(color: Colors.white, fontSize: 18.0),
-                    )),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: screenSize.height * 0.01),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TimeSlots()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: themeColor,
+                          minimumSize: const Size.fromHeight(50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)))),
+                      child: Text(
+                        'Continue',
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      )),
+                ),
               ),
             )
           ],

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:nillq_doctor_app/screens/home/scheduleAppointments/availableDays.dart';
-import 'package:nillq_doctor_app/screens/home/userProfile/userProfile.dart';
+import 'package:nillq_doctor_app/screens/home/consultation/appointments.dart';
 import 'package:nillq_doctor_app/services/fetchAppointmentsSchedules.dart';
-import 'package:nillq_doctor_app/shared/constants.dart';
 import 'package:nillq_doctor_app/shared/customContainers.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class AppointmentSchedules extends StatefulWidget {
+  const AppointmentSchedules({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<AppointmentSchedules> createState() => _AppointmentSchedulesState();
 }
 
-class _HomeState extends State<Home> {
+class _AppointmentSchedulesState extends State<AppointmentSchedules> {
   late Future<List<Map<String, String>>> _futureSchedules;
 
   @override
@@ -28,51 +26,16 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        scrolledUnderElevation: 0.0,
         elevation: 5.0,
-        title: SafeArea(
-          child: Text(
-            'NillQ',
-            style: TextStyle(
-              color: Colors.grey[800],
-              letterSpacing: 1.0,
-            ),
+        scrolledUnderElevation: 0.0,
+        title: Text(
+          'Schedules',
+          style: TextStyle(
+            color: Colors.grey[800],
+            // letterSpacing: 1.0,
           ),
         ),
         centerTitle: true,
-        actions: <Widget>[
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.only(right: screenSize.width * 0.04),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserProfile()));
-                },
-                child: CircleAvatar(
-                  backgroundColor: themeColor,
-                  foregroundImage: AssetImage('assets/images/doctor.jpg'),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: screenSize.height * 0.01),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SelectDays()));
-          },
-          backgroundColor: themeColor,
-          child: Icon(
-            Icons.add,
-            size: 30.0,
-            color: Colors.white,
-          ),
-        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -105,11 +68,16 @@ class _HomeState extends State<Home> {
                   return ListView.builder(
                       itemCount: schedules.length,
                       itemBuilder: (context, index) {
-                        return ScheduleTiles(
-                          time: schedules[index]['time']!,
-                          totalTokens: schedules[index]['totalTokens']!,
-                          bookedTokens: schedules[index]['bookedTokens']!,
-                        );
+                        return TilesForSchedule(
+                            time: schedules[index]['time']!,
+                            totalTokens: schedules[index]['totalTokens']!,
+                            bookedTokens: schedules[index]['bookedTokens']!,
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Appointmnets()));
+                            });
                       });
                 }
               }

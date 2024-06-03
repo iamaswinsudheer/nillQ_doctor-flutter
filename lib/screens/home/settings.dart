@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/screens/authentication/login.dart';
 import 'package:nillq_doctor_app/services/saveToken.dart';
 import 'package:nillq_doctor_app/services/userAuthentication.dart';
-import 'package:nillq_doctor_app/wrapper.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -14,7 +11,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -27,7 +23,7 @@ class _SettingsState extends State<Settings> {
         child: ListView(
           children: <Widget>[
             ListTile(
-              onTap: (){},
+              onTap: () {},
               shape: Border(bottom: BorderSide(color: Colors.grey)),
               title: Text(
                 'Account Settings',
@@ -55,23 +51,13 @@ class _SettingsState extends State<Settings> {
                                 Authentication authentication =
                                     new Authentication();
                                 try {
-                                  if (await tokenManager.isTokenPresent()) {
-                                    await authentication.logout();
-                                    await tokenManager.destroyToken();
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Login()),
-                                        (route) => false);
-                                  } else {
-                                    await googleSignIn.signOut();
-                                    await FirebaseAuth.instance.signOut();
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Wrapper()),
-                                        (route) => false);
-                                  }
+                                  await authentication.logout();
+                                  await tokenManager.destroyToken();
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Login()),
+                                      (route) => false);
                                 } catch (error) {
                                   Navigator.pop(context);
                                   showDialog(

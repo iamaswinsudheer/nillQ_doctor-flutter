@@ -63,7 +63,7 @@ class _ConsultationPlaceState extends State<ConsultationPlace> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10.0))
                           ),
-                            primary: themeColor,
+                            backgroundColor: themeColor,
                             minimumSize: Size.fromHeight(40.0)),
                         child: Text(
                           'Continue',

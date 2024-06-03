@@ -33,7 +33,7 @@ class _CustomDatesState extends State<CustomDates> {
                   itemCount: days.length,
                   itemBuilder: (context, index) {
                     return CheckboxListTile(
-                      activeColor: themeColor,
+                        activeColor: themeColor,
                         title: Text(days[index],
                             style: TextStyle(
                                 color: Colors.grey[800], fontSize: 18.0)),
@@ -46,20 +46,19 @@ class _CustomDatesState extends State<CustomDates> {
                   })),
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: screenSize.width * 0.015,
-              vertical: screenSize.height * 0.01
-            ),
+                horizontal: screenSize.width * 0.02,
+                vertical: screenSize.height * 0.02),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TimeSlots()));
+                    MaterialPageRoute(builder: (context) => TimeSlots()));
               },
               child: Text(
                 'Continue',
                 style: TextStyle(fontSize: 18.0, color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                  primary: themeColor,
+                  backgroundColor: themeColor,
                   minimumSize: const Size.fromHeight(50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)))),
