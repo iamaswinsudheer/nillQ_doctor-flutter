@@ -2,16 +2,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/gestures.dart';
 
 //Tiles for listing appointment schedule in home screen
 class ScheduleTiles extends StatelessWidget {
   final String time;
   final String totalTokens;
   final String bookedTokens;
+  final VoidCallback onTap;
   ScheduleTiles(
       {required this.time,
       required this.totalTokens,
-      required this.bookedTokens});
+      required this.bookedTokens,
+      required this.onTap
+      });
 
   final List<Color> tileBgColors = [
     Color.fromARGB(255, 84, 124, 225),
@@ -29,82 +33,85 @@ class ScheduleTiles extends StatelessWidget {
           color: tileBgColors[int.parse(bookedTokens) % 4],
           borderRadius: BorderRadius.all(Radius.circular(10.0))),
       margin: EdgeInsets.only(top: screenSize.height * 0.01),
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-            screenSize.width * 0.05,
-            screenSize.height * 0.02,
-            screenSize.width * 0.0,
-            screenSize.height * 0.02),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(children: [
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      time,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.w500),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+              screenSize.width * 0.05,
+              screenSize.height * 0.02,
+              screenSize.width * 0.0,
+              screenSize.height * 0.02),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        time,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              PopupMenuButton(
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: Colors.white,
-                  ),
-                  itemBuilder: (BuildContext context) {
-                    return <PopupMenuEntry>[
-                      PopupMenuItem(
-                          child: Text(
-                        'Reschedule',
-                        style:
-                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
-                      )),
-                      PopupMenuItem(
-                          child: Text(
-                        'Cancel',
-                        style:
-                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
-                      )),
-                      PopupMenuItem(
-                          child: Text(
-                        'Delete',
-                        style:
-                            TextStyle(color: Colors.grey[700], fontSize: 16.0),
-                      )),
-                    ];
-                  }),
-            ]),
-            Text(
-              'Total tokens : $totalTokens',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w500),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Booked tokens : $bookedTokens',
-                  style: TextStyle(
+                PopupMenuButton(
+                    icon: Icon(
+                      Icons.more_vert,
                       color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500),
+                    ),
+                    itemBuilder: (BuildContext context) {
+                      return <PopupMenuEntry>[
+                        PopupMenuItem(
+                            child: Text(
+                          'Reschedule',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                        )),
+                        PopupMenuItem(
+                            child: Text(
+                          'Cancel',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                        )),
+                        PopupMenuItem(
+                            child: Text(
+                          'Delete',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 16.0),
+                        )),
+                      ];
+                    }),
+              ]),
+              Text(
+                'Total tokens : $totalTokens',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Booked tokens : $bookedTokens',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -774,5 +781,201 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+
+//screen for showing patient details
+class PatientDetailScreen extends StatelessWidget{
+  final patientDetails;
+  PatientDetailScreen({required this.patientDetails});
+
+  @override
+  Widget build(BuildContext context){
+    Size screenSize = MediaQuery.of(context).size;
+    return Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: screenSize.width * 0.05,
+              vertical: screenSize.height * 0.01),
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Center(
+                child: Text(
+                  patientDetails['name']!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey[800],
+                      fontSize: 30.0,
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Center(
+                child: Text(
+                  patientDetails['gender']!,
+                  style: TextStyle(
+                      color: Colors.grey[800],
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              Center(
+                child: Container(
+                  height: 55.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'Age',
+                            style: TextStyle(
+                                color: Colors.grey[800],
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          Text(
+                            '${patientDetails['age']!} Years',
+                            style: TextStyle(
+                                color: Colors.grey[800],
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.normal),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: screenSize.width * 0.1,
+                      ),
+                      VerticalDivider(
+                        color: Colors.grey,
+                        thickness: 1.0,
+                        indent: 10.0,
+                        endIndent: 10.0,
+                      ),
+                      SizedBox(
+                        width: screenSize.width * 0.05,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            'Blood group',
+                            style: TextStyle(
+                                color: Colors.grey[800],
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          Text(
+                            patientDetails['blood_group']!,
+                            style: TextStyle(
+                                color: Colors.grey[800],
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.normal),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Divider(),
+              SizedBox(
+                height: screenSize.height * 0.03,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: screenSize.height * 0.03),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Token number',
+                              style: TextStyle(
+                                  color: Colors.grey[800], fontSize: 16.0),
+                            ),
+                            SizedBox(
+                              height: screenSize.height * 0.01,
+                            ),
+                            Text(
+                              patientDetails['token']!,
+                              style: TextStyle(
+                                  color: themeColor,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenSize.width * 0.05,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Approximate time',
+                              style: TextStyle(
+                                  color: Colors.grey[800], fontSize: 16.0),
+                            ),
+                            SizedBox(
+                              height: screenSize.height * 0.01,
+                            ),
+                            Text(
+                              patientDetails['approxTime']!,
+                              style: TextStyle(
+                                  color: themeColor,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.03,
+              ),
+              Text(
+                patientDetails['reason']!,
+                style: TextStyle(
+                    color: Colors.grey[800],
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.01,
+              ),
+              Text(
+                patientDetails['symptoms']!,
+                style: TextStyle(color: Colors.grey[800], fontSize: 16.0),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.04,
+              ),
+              RichText(
+                  text: TextSpan(children: [
+                TextSpan(
+                    text: 'View patient\'s medications. ',
+                    style: TextStyle(color: Colors.grey[800], fontSize: 16.0)),
+                TextSpan(
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    text: 'View',
+                    style: TextStyle(color: themeColor, fontSize: 16.0))
+              ])),
+              SizedBox(height: screenSize.height * 0.15,)
+            ],
+          ),
+        );
   }
 }

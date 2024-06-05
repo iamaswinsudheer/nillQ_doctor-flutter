@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nillq_doctor_app/screens/home/consultation/quickViewPatients.dart';
 import 'package:nillq_doctor_app/screens/home/scheduleAppointments/availableDays.dart';
 import 'package:nillq_doctor_app/screens/home/userProfile/userProfile.dart';
 import 'package:nillq_doctor_app/services/fetchAppointmentsSchedules.dart';
@@ -106,6 +107,12 @@ class _HomeState extends State<Home> {
                       itemCount: schedules.length,
                       itemBuilder: (context, index) {
                         return ScheduleTiles(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => QuickViewPatinets()));
+                          },
                           time: schedules[index]['time']!,
                           totalTokens: schedules[index]['totalTokens']!,
                           bookedTokens: schedules[index]['bookedTokens']!,
