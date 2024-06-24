@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/screens/home/bottomNavBar.dart';
 import 'package:nillq_doctor_app/screens/loadingScreen.dart';
+import 'package:nillq_doctor_app/services/docIdManager.dart';
 import 'package:nillq_doctor_app/services/saveToken.dart';
 import 'package:nillq_doctor_app/services/userAuthentication.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
@@ -16,6 +17,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   Authentication authentication = new Authentication();
   TokenManager tokenManager = new TokenManager();
+  DocIdManager docIdManager = new DocIdManager();
   late String loginId;
   late String password;
   bool _isLoading = false;
@@ -138,53 +140,52 @@ class _LoginState extends State<Login> {
                           height: screenSize.height * 0.08,
                         ),
                         ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => BottomNavBar()));
-                            // if (_formKey.currentState!.validate()) {
-                            //   print('login id: $loginId, password: $password');
-                            //   try {
-                            //     setState(() {
-                            //       _isLoading = true;
-                            //     });
-                            //     Map<String, dynamic> token =
-                            //         await authentication.login(loginId, password);
-                            //     print(token);
-                            //     await tokenManager
-                            //         .saveToken(token['Token'].toString());
-                            //     Navigator.pushAndRemoveUntil(
-                            //         context,
-                            //         MaterialPageRoute(
-                            //             builder: (context) => BottomNavBar()),
-                            //         (route) => false);
-                            //     setState(() {
-                            //       _isLoading = false;
-                            //     });
-                            //   } catch (error) {
-                            //     print(error);
-                            //     setState(() {
-                            //       _isLoading = false;
-                            //     });
-                            //     showDialog(
-                            //         context: context,
-                            //         builder: (context) {
-                            //           return AlertDialog(
-                            //             title: Text('Login failed'),
-                            //             content: Text(
-                            //                 'Login attempt failed, please try again.'),
-                            //             actions: [
-                            //               TextButton(
-                            //                   onPressed: () {
-                            //                     Navigator.pop(context);
-                            //                   },
-                            //                   child: Text('Ok'))
-                            //             ],
-                            //           );
-                            //         });
-                            //   }
-                            // }
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              print('login id: $loginId, password: $password');
+                              try {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                Map<String, dynamic> loginResponse =
+                                    await authentication.login(
+                                        loginId, password);
+                                print(loginResponse);
+                                await tokenManager.saveToken(
+                                    loginResponse['Token'].toString());
+                                await docIdManager.saveDocId(
+                                    loginResponse['Doctor_Id'].toString());
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BottomNavBar()),
+                                    (route) => false);
+                                setState(() {
+                                  _isLoading = false;
+                                });
+                              } catch (error) {
+                                print(error);
+                                setState(() {
+                                  _isLoading = false;
+                                });
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('Login failed'),
+                                        content: Text(
+                                            'Login attempt failed, please try again.'),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Ok'))
+                                        ],
+                                      );
+                                    });
+                              }
+                            }
                           },
                           child: Text(
                             'Sign In',

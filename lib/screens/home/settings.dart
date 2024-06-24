@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/screens/authentication/login.dart';
+import 'package:nillq_doctor_app/services/docIdManager.dart';
 import 'package:nillq_doctor_app/services/saveToken.dart';
 import 'package:nillq_doctor_app/services/userAuthentication.dart';
 
@@ -11,6 +12,9 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  TokenManager tokenManager = new TokenManager();
+  Authentication authentication = new Authentication();
+  DocIdManager docIdManager = new DocIdManager();
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -47,12 +51,10 @@ class _SettingsState extends State<Settings> {
                               child: Text('Cancel')),
                           TextButton(
                               onPressed: () async {
-                                TokenManager tokenManager = new TokenManager();
-                                Authentication authentication =
-                                    new Authentication();
                                 try {
                                   await authentication.logout();
                                   await tokenManager.destroyToken();
+                                  await docIdManager.destroyDocId();
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
