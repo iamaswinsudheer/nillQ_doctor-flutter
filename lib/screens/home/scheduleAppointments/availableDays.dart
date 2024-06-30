@@ -77,7 +77,7 @@ class _SelectDaysState extends State<SelectDays> {
                   child: InkWell(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => PickDates()));
+                          MaterialPageRoute(builder: (context) => const PickDates()));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class _SelectDaysState extends State<SelectDays> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CustomDates()));
+                              builder: (context) => const CustomDates()));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,18 +150,18 @@ class _SelectDaysState extends State<SelectDays> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TimeSlots()));
+                          MaterialPageRoute(builder: (context) => const TimeSlots()));
                     },
-                    child: Text(
-                      'Continue',
-                      style: TextStyle(color: Colors.white, fontSize: 18.0),
-                    ),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: themeColor,
                         minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)))),
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    ),
                   ),
                 ),
               ),

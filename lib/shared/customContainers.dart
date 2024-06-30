@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
 import 'package:intl/intl.dart';
@@ -11,19 +10,20 @@ class ScheduleTiles extends StatelessWidget {
   final String bookedTokens;
   final VoidCallback onTap;
   ScheduleTiles(
-      {required this.time,
+      {super.key, required this.time,
       required this.totalTokens,
       required this.bookedTokens,
       required this.onTap
       });
 
   final List<Color> tileBgColors = [
-    Color.fromARGB(255, 84, 124, 225),
-    Color.fromARGB(255, 5, 184, 169),
-    Color.fromARGB(255, 130, 132, 130),
-    Color.fromARGB(255, 192, 108, 6)
+    const Color.fromARGB(255, 84, 124, 225),
+    const Color.fromARGB(255, 5, 184, 169),
+    const Color.fromARGB(255, 130, 132, 130),
+    const Color.fromARGB(255, 192, 108, 6)
   ];
 
+  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
@@ -31,7 +31,7 @@ class ScheduleTiles extends StatelessWidget {
       height: screenSize.height * 0.17,
       decoration: BoxDecoration(
           color: tileBgColors[int.parse(bookedTokens) % 4],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))),
       margin: EdgeInsets.only(top: screenSize.height * 0.01),
       child: InkWell(
         onTap: onTap,
@@ -55,7 +55,7 @@ class ScheduleTiles extends StatelessWidget {
                         time,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 25.0,
                             fontWeight: FontWeight.w500),
@@ -64,7 +64,7 @@ class ScheduleTiles extends StatelessWidget {
                   ),
                 ),
                 PopupMenuButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.more_vert,
                       color: Colors.white,
                     ),
@@ -93,7 +93,7 @@ class ScheduleTiles extends StatelessWidget {
               ]),
               Text(
                 'Total tokens : $totalTokens',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500),
@@ -103,7 +103,7 @@ class ScheduleTiles extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Booked tokens : $bookedTokens',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,
                         fontWeight: FontWeight.w500),
@@ -125,18 +125,19 @@ class TilesForSchedule extends StatelessWidget {
   final String bookedTokens;
   final VoidCallback onTap;
   TilesForSchedule(
-      {required this.time,
+      {super.key, required this.time,
       required this.totalTokens,
       required this.bookedTokens,
       required this.onTap});
 
   final List<Color> tileBgColors = [
-    Color.fromARGB(255, 84, 124, 225),
-    Color.fromARGB(255, 5, 184, 169),
-    Color.fromARGB(255, 130, 132, 130),
-    Color.fromARGB(255, 192, 108, 6)
+    const Color.fromARGB(255, 84, 124, 225),
+    const Color.fromARGB(255, 5, 184, 169),
+    const Color.fromARGB(255, 130, 132, 130),
+    const Color.fromARGB(255, 192, 108, 6)
   ];
 
+  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
@@ -144,7 +145,7 @@ class TilesForSchedule extends StatelessWidget {
       height: screenSize.height * 0.17,
       decoration: BoxDecoration(
           color: tileBgColors[int.parse(bookedTokens) % 4],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))),
       margin: EdgeInsets.only(top: screenSize.height * 0.01),
       child: InkWell(
         onTap: onTap,
@@ -162,7 +163,7 @@ class TilesForSchedule extends StatelessWidget {
                   time,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25.0,
                       fontWeight: FontWeight.w500),
@@ -170,7 +171,7 @@ class TilesForSchedule extends StatelessWidget {
               ),
               Text(
                 'Total tokens : $totalTokens',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500),
@@ -180,7 +181,7 @@ class TilesForSchedule extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Booked tokens : $bookedTokens',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,
                         fontWeight: FontWeight.w500),
@@ -204,17 +205,17 @@ class CustomTileForAppointments extends StatelessWidget {
   final VoidCallback onTap;
 
   CustomTileForAppointments(
-      {required this.name,
+      {super.key, required this.name,
       required this.age,
       required this.gender,
       required this.onTap,
       required this.time});
 
   final List<Color> tileBgColors = [
-    Color.fromARGB(255, 84, 124, 225),
-    Color.fromARGB(255, 5, 184, 169),
-    Color.fromARGB(255, 130, 132, 130),
-    Color.fromARGB(255, 192, 108, 6)
+    const Color.fromARGB(255, 84, 124, 225),
+    const Color.fromARGB(255, 5, 184, 169),
+    const Color.fromARGB(255, 130, 132, 130),
+    const Color.fromARGB(255, 192, 108, 6)
   ];
 
   @override
@@ -225,7 +226,7 @@ class CustomTileForAppointments extends StatelessWidget {
       height: screenSize.height * 0.17,
       decoration: BoxDecoration(
           color: tileBgColors[int.parse(age) % 4],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))),
       margin: EdgeInsets.only(top: screenSize.height * 0.01),
       child: InkWell(
         onTap: onTap,
@@ -250,7 +251,7 @@ class CustomTileForAppointments extends StatelessWidget {
                             name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.w500),
@@ -265,7 +266,7 @@ class CustomTileForAppointments extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.access_time_filled,
                                     color: Colors.white,
                                   ),
@@ -274,7 +275,7 @@ class CustomTileForAppointments extends StatelessWidget {
                                   ),
                                   Text(
                                     time,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w500),
@@ -288,7 +289,7 @@ class CustomTileForAppointments extends StatelessWidget {
                     ]),
                 Text(
                   gender,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
                       fontWeight: FontWeight.w500),
@@ -298,7 +299,7 @@ class CustomTileForAppointments extends StatelessWidget {
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       '$age years old',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500),
@@ -420,8 +421,8 @@ class CustomContainerForReports extends StatelessWidget {
   final String hospital;
   final String remark;
 
-  CustomContainerForReports(
-      {required this.doctorName, required this.hospital, required this.remark});
+  const CustomContainerForReports(
+      {super.key, required this.doctorName, required this.hospital, required this.remark});
 
   @override
   Widget build(BuildContext context) {
@@ -433,7 +434,7 @@ class CustomContainerForReports extends StatelessWidget {
       margin: EdgeInsets.only(bottom: screenSize.height * 0.01),
       decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -467,7 +468,7 @@ class CustomContainerForTimePicker extends StatefulWidget {
       onTap;
   final VoidCallback onClose;
 
-  CustomContainerForTimePicker({required this.onTap, required this.onClose});
+  const CustomContainerForTimePicker({super.key, required this.onTap, required this.onClose});
 
   @override
   State<CustomContainerForTimePicker> createState() =>
@@ -495,7 +496,7 @@ class _CustomContainerForTimePickerState
 
   late String formattedEndTime;
 
-  TextEditingController _tokenController = TextEditingController();
+  final TextEditingController _tokenController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -503,7 +504,7 @@ class _CustomContainerForTimePickerState
     return Container(
       decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -520,7 +521,7 @@ class _CustomContainerForTimePickerState
               ),
               IconButton(
                   onPressed: widget.onClose,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     color: Colors.red,
                   ))
@@ -555,10 +556,10 @@ class _CustomContainerForTimePickerState
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor : themeColor,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)))),
-                    child: Text(
+                    child: const Text(
                       'Choose',
                       style: TextStyle(color: Colors.white, fontSize: 16.0),
                     ))
@@ -581,7 +582,7 @@ class _CustomContainerForTimePickerState
           Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: screenSize.width * 0.04),
-              child: Divider()),
+              child: const Divider()),
           SizedBox(
             height: screenSize.height * 0.02,
           ),
@@ -600,7 +601,7 @@ class _CustomContainerForTimePickerState
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: themeColor,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)))),
                     onPressed: () async {
@@ -614,7 +615,7 @@ class _CustomContainerForTimePickerState
                         });
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       'Choose',
                       style: TextStyle(color: Colors.white, fontSize: 16.0),
                     ))
@@ -654,7 +655,7 @@ class _CustomContainerForTimePickerState
                     controller: _tokenController,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.grey,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: 'No of tokens',
                         hintStyle: TextStyle(color: Colors.grey),
                         filled: true,
@@ -686,10 +687,10 @@ class _CustomContainerForTimePickerState
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                       backgroundColor: themeColor,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0)))),
-                  child: Text(
+                  child: const Text(
                     'Add time slot',
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   )),
@@ -711,8 +712,8 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
   final String tokens;
   final VoidCallback onTap;
 
-  CustomTileForSelectedTimeSlots(
-      {required this.startTime,
+  const CustomTileForSelectedTimeSlots(
+      {super.key, required this.startTime,
       required this.endTime,
       required this.onTap,
       required this.tokens});
@@ -727,7 +728,7 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
           vertical: screenSize.height * 0.01),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -741,7 +742,7 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
                       text: 'Time slot added ',
                       style:
                           TextStyle(color: Colors.grey[800], fontSize: 16.0)),
-                  WidgetSpan(
+                  const WidgetSpan(
                       child: Icon(
                     Icons.check,
                     color: Colors.green,
@@ -750,7 +751,7 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
               )),
               IconButton(
                   onPressed: onTap,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.delete,
                     color: Colors.red,
                   ))
@@ -788,7 +789,7 @@ class CustomTileForSelectedTimeSlots extends StatelessWidget {
 //screen for showing patient details
 class PatientDetailScreen extends StatelessWidget{
   final patientDetails;
-  PatientDetailScreen({required this.patientDetails});
+  const PatientDetailScreen({super.key, required this.patientDetails});
 
   @override
   Widget build(BuildContext context){
@@ -824,7 +825,7 @@ class PatientDetailScreen extends StatelessWidget{
                 height: screenSize.height * 0.02,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   height: 55.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -850,7 +851,7 @@ class PatientDetailScreen extends StatelessWidget{
                       SizedBox(
                         width: screenSize.width * 0.1,
                       ),
-                      VerticalDivider(
+                      const VerticalDivider(
                         color: Colors.grey,
                         thickness: 1.0,
                         indent: 10.0,
@@ -881,7 +882,7 @@ class PatientDetailScreen extends StatelessWidget{
                   ),
                 ),
               ),
-              Divider(),
+              const Divider(),
               SizedBox(
                 height: screenSize.height * 0.03,
               ),
@@ -907,7 +908,7 @@ class PatientDetailScreen extends StatelessWidget{
                             ),
                             Text(
                               patientDetails['token']!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: themeColor,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
@@ -931,7 +932,7 @@ class PatientDetailScreen extends StatelessWidget{
                             ),
                             Text(
                               patientDetails['approxTime']!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: themeColor,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
@@ -971,7 +972,7 @@ class PatientDetailScreen extends StatelessWidget{
                 TextSpan(
                     recognizer: TapGestureRecognizer()..onTap = () {},
                     text: 'View',
-                    style: TextStyle(color: themeColor, fontSize: 16.0))
+                    style: const TextStyle(color: themeColor, fontSize: 16.0))
               ])),
               SizedBox(height: screenSize.height * 0.15,)
             ],

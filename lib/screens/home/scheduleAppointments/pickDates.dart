@@ -44,7 +44,7 @@ class _PickDatesState extends State<PickDates> {
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey[800]!),
                 ),
-                icon: Icon(
+                icon: const Icon(
                   Icons.calendar_today,
                   color: themeColor,
                 ),
@@ -79,7 +79,7 @@ class _PickDatesState extends State<PickDates> {
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[800]!),
                   ),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.calendar_today,
                     color: themeColor,
                   ),
@@ -113,15 +113,15 @@ class _PickDatesState extends State<PickDates> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => TimeSlots()));
+                                builder: (context) => const TimeSlots()));
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: themeColor,
                           minimumSize: const Size.fromHeight(50),
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)))),
-                      child: Text(
+                      child: const Text(
                         'Continue',
                         style: TextStyle(color: Colors.white, fontSize: 18.0),
                       )),

@@ -5,7 +5,7 @@ import 'package:nillq_doctor_app/shared/constants.dart';
 
 class AnimatedCheck extends StatefulWidget {
   final String message;
-  AnimatedCheck({required this.message});
+  const AnimatedCheck({super.key, required this.message});
 
   @override
   _AnimatedCheckState createState() => _AnimatedCheckState();
@@ -28,10 +28,10 @@ class _AnimatedCheckState extends State<AnimatedCheck>
         setState(() {
           isAnimationCompleted = true;
         });
-        Timer(Duration(seconds: 2), () {
+        Timer(const Duration(seconds: 2), () {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => BottomNavBar()),
+              MaterialPageRoute(builder: (context) => const BottomNavBar()),
               (route) => false);
         });
       }
@@ -59,7 +59,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
             child: Container(
               height: circleSize,
               width: circleSize,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: themeColor,
                 shape: BoxShape.circle,
               ),

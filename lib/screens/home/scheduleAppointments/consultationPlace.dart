@@ -46,7 +46,7 @@ class _ConsultationPlaceState extends State<ConsultationPlace> {
                     TextFormField(
                       decoration: textInputDecoration.copyWith(
                           hintText: 'Place of consultation',
-                          hintStyle: TextStyle(color: Colors.grey)),
+                          hintStyle: const TextStyle(color: Colors.grey)),
                       maxLines: 4,
                       cursorColor: Colors.grey,
                     ),
@@ -60,12 +60,12 @@ class _ConsultationPlaceState extends State<ConsultationPlace> {
                     child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10.0))
                           ),
                             backgroundColor: themeColor,
-                            minimumSize: Size.fromHeight(40.0)),
-                        child: Text(
+                            minimumSize: const Size.fromHeight(40.0)),
+                        child: const Text(
                           'Continue',
                           style: TextStyle(color: Colors.white, fontSize: 22.0),
                         )),

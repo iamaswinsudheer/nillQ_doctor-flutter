@@ -48,9 +48,9 @@ class _HomeState extends State<Home> {
               child: InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserProfile()));
+                      MaterialPageRoute(builder: (context) => const UserProfile()));
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: themeColor,
                   foregroundImage: AssetImage('assets/images/doctor.jpg'),
                 ),
@@ -65,10 +65,10 @@ class _HomeState extends State<Home> {
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SelectDays()));
+                context, MaterialPageRoute(builder: (context) => const SelectDays()));
           },
           backgroundColor: themeColor,
-          child: Icon(
+          child: const Icon(
             Icons.add,
             size: 30.0,
             color: Colors.white,
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
             future: _futureSchedules,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
@@ -92,7 +92,7 @@ class _HomeState extends State<Home> {
                 );
               } else {
                 List<Map<String, String>> schedules = snapshot.data!;
-                if (schedules.length == 0) {
+                if (schedules.isEmpty) {
                   return Center(
                     child: Text(
                       'No scheduled appointments',
@@ -111,7 +111,7 @@ class _HomeState extends State<Home> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => QuickViewPatinets()));
+                                    builder: (context) => const QuickViewPatinets()));
                           },
                           time: schedules[index]['time']!,
                           totalTokens: schedules[index]['totalTokens']!,

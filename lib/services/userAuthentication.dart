@@ -47,7 +47,7 @@ class Authentication {
 
   //function to handle logout
   Future<String?> logout() async {
-    TokenManager tokenManager = new TokenManager();
+    TokenManager tokenManager = TokenManager();
     String api = "http://$ip:7000/api/auth/logout";
     try {
       final response = await http.post(Uri.parse(api),
