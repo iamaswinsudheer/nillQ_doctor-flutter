@@ -8,7 +8,7 @@ import 'networkConfig.dart';
 DocIdManager id = new DocIdManager();
 
 Future<Map<String, dynamic>> fetchDoctor() async {
-    String Docid = await id.readDocId();
+    String Docid = id.readDocId();
     String api = "http://$ip:7000/api/doctors/get-data-doctor";
     try{
       final response = await http.get(Uri.parse(api), headers: {"id": Docid});

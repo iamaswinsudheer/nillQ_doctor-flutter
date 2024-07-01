@@ -1,11 +1,20 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TokenManager {
-  String key = "accessToken";
+  late String key;
+  late SharedPreferences prefs;
+
+  TokenManager() {
+    key = "accessToken";
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   Future<void> saveToken(String token) async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString(key, token);
     } catch (error) {
       throw Exception(error);
@@ -14,25 +23,22 @@ class TokenManager {
 
   Future<void> destroyToken() async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove(key);
     } catch (error) {
       throw Exception(error);
     }
   }
 
-  Future<String> readToken() async {
+  String readToken() {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       return prefs.getString(key)!;
     } catch (exception) {
       throw Exception(exception);
     }
   }
 
-  Future<bool> isTokenPresent() async {
+  bool isTokenPresent() {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       return prefs.containsKey(key);
     } catch (error) {
       throw Exception(error);

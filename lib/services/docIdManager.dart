@@ -1,11 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DocIdManager {
-  String key = 'doctorId';
+  late String key;
+  late SharedPreferences prefs;
+
+  _initialize() async {
+    key = 'doctorId';
+    prefs = await SharedPreferences.getInstance();
+  }
 
   Future<void> saveDocId(String docId) async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString(key, docId);
     } catch (error) {
       throw Exception(error);
@@ -14,16 +19,14 @@ class DocIdManager {
 
   Future<void> destroyDocId() async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove(key);
     } catch (error) {
       throw Exception(error);
     }
   }
 
-  Future<String> readDocId() async {
+  String readDocId(){
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       return prefs.getString(key)!;
     } catch (error) {
       throw Exception(error);

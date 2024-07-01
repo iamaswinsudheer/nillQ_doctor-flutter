@@ -58,7 +58,7 @@ class _UserProfileState extends State<UserProfile> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(themeColor),),
                 );
               } else if (snapshot.hasError) {
                 print(snapshot.error);
