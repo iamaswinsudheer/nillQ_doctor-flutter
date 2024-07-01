@@ -15,9 +15,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  Authentication authentication = new Authentication();
-  TokenManager tokenManager = new TokenManager();
-  DocIdManager docIdManager = new DocIdManager();
+  Authentication authentication = Authentication();
+  TokenManager tokenManager = TokenManager();
+  DocIdManager docIdManager = DocIdManager();
   late String loginId;
   late String password;
   bool _isLoading = false;
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return _isLoading
-        ? LoadingIndicator()
+        ? const LoadingIndicator()
         : Scaffold(
             body: Center(
               child: SingleChildScrollView(
@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'NillQ',
                                   style: TextStyle(
                                     letterSpacing: 2.0,
@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
                                 SizedBox(
                                   height: screenSize.height * 0.01,
                                 ),
-                                FittedBox(
+                                const FittedBox(
                                   fit: BoxFit.scaleDown,
                                   child: Text(
                                     'Empower your practice.',
@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => BottomNavBar()),
+                                        builder: (context) => const BottomNavBar()),
                                     (route) => false);
                                 setState(() {
                                   _isLoading = false;
@@ -172,31 +172,31 @@ class _LoginState extends State<Login> {
                                     context: context,
                                     builder: (context) {
                                       return AlertDialog(
-                                        title: Text('Login failed'),
-                                        content: Text(
+                                        title: const Text('Login failed'),
+                                        content: const Text(
                                             'Login attempt failed, please try again.'),
                                         actions: [
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: Text('Ok'))
+                                              child: const Text('Ok'))
                                         ],
                                       );
                                     });
                               }
                             }
                           },
-                          child: Text(
-                            'Sign In',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 22.0),
-                          ),
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
                               backgroundColor: themeColor,
                               minimumSize: const Size.fromHeight(50)),
+                          child: const Text(
+                            'Sign In',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 22.0),
+                          ),
                         ),
                       ],
                     ),

@@ -11,12 +11,29 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  late Future<Map<String, String>> _futureDoctorDetails;
+  late Future<Map<String, dynamic>> _futureDoctorDetails;
 
   @override
   void initState() {
     super.initState();
     _futureDoctorDetails = fetchDoctor();
+  }
+
+  String calculateAge(String dateOfBirth) {
+    // Parse the date of birth string to a DateTime object
+    DateTime dob = DateTime.parse(dateOfBirth);
+    // Get the current date
+    DateTime today = DateTime.now();
+
+    // Calculate the age
+    int age = today.year - dob.year;
+
+    // Adjust the age if the current date is before the birthday this year
+    if (today.month < dob.month || (today.month == dob.month && today.day < dob.day)) {
+      age--;
+    }
+
+    return age.toString();
   }
 
   @override
@@ -29,9 +46,9 @@ class _UserProfileState extends State<UserProfile> {
             IconButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Settings()));
+                      MaterialPageRoute(builder: (context) => const Settings()));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.settings,
                 ))
           ],
@@ -40,17 +57,17 @@ class _UserProfileState extends State<UserProfile> {
             future: _futureDoctorDetails,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
                 print(snapshot.error);
-                return Center(
+                return const Center(
                   child: Text('Something went wrong'),
                 );
               } else {
-                Map<String, String> docDetails = snapshot.data!;
-                print(docDetails);
+                Map<String, dynamic> docDetails = snapshot.data!;
+                final String link = docDetails['photo_Url'];
                 return Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: screenSize.width * 0.04,
@@ -59,17 +76,16 @@ class _UserProfileState extends State<UserProfile> {
                     children: [
                       Center(
                         child: Stack(children: [
-                          CircleAvatar(
+                           CircleAvatar(
                             radius: 70,
-                            backgroundImage:
-                                AssetImage('assets/images/doctor.jpg'),
+                            backgroundImage: NetworkImage(link)
                           ),
                           Positioned(
                               bottom: 1,
                               right: 1,
                               child: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.photo_camera,
                                     color: themeColor,
                                     size: 35.0,
@@ -84,7 +100,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            '${docDetails['firstName']} ${docDetails['lastName']}',
+                            '${docDetails['first_name']} ${docDetails['last_name']}',
                             style: TextStyle(
                                 fontSize: 23.0,
                                 color: Colors.grey[800],
@@ -105,7 +121,7 @@ class _UserProfileState extends State<UserProfile> {
                             decoration: BoxDecoration(
                                 color: Colors.grey[200],
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
+                                    const BorderRadius.all(Radius.circular(20.0))),
                             child: RichText(
                                 text: TextSpan(children: [
                               TextSpan(
@@ -114,7 +130,8 @@ class _UserProfileState extends State<UserProfile> {
                                       color: Colors.grey[800],
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: docDetails['age'],
+
+                                  text: calculateAge(docDetails['date_of_birth']),
                                   style: TextStyle(
                                     color: Colors.grey[800],
                                   ))
@@ -130,7 +147,7 @@ class _UserProfileState extends State<UserProfile> {
                             decoration: BoxDecoration(
                                 color: Colors.grey[200],
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
+                                    const BorderRadius.all(Radius.circular(20.0))),
                             child: RichText(
                                 text: TextSpan(children: [
                               TextSpan(
@@ -139,7 +156,7 @@ class _UserProfileState extends State<UserProfile> {
                                       color: Colors.grey[800],
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: docDetails['experience'],
+                                  text: docDetails['experience'].toString(),
                                   style: TextStyle(
                                     color: Colors.grey[800],
                                   ))
@@ -161,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['phoneNumber']!,
+                        docDetails['phone_number'].toString()!,
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -212,7 +229,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['registerNumber']!,
+                        docDetails['registration_number']!,
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -229,7 +246,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['yearOfRegistration']!,
+                        docDetails['year_of_registration'].toString()!,
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -246,7 +263,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['stateMedicalCouncil']!,
+                        docDetails['state_medical_council']!,
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -297,7 +314,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['zipCode']!,
+                        docDetails['zip_code'].toString()!,
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,

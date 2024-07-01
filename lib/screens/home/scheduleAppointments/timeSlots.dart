@@ -69,7 +69,7 @@ class _TimeSlotsState extends State<TimeSlots> {
                 decoration: BoxDecoration(
                     // color: Colors.grey[200],
                     border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -108,10 +108,10 @@ class _TimeSlotsState extends State<TimeSlots> {
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: themeColor,
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0)))),
-                            child: Text(
+                            child: const Text(
                               'Choose',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 16.0),
@@ -121,7 +121,7 @@ class _TimeSlotsState extends State<TimeSlots> {
                     formattedStartTime == null
                         ? Container()
                         : Text('Start time : $formattedStartTime'),
-                    Divider(),
+                    const Divider(),
                     Row(
                       children: [
                         Expanded(
@@ -147,10 +147,10 @@ class _TimeSlotsState extends State<TimeSlots> {
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: themeColor,
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0)))),
-                            child: Text(
+                            child: const Text(
                               'Choose',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 16.0),
@@ -160,7 +160,7 @@ class _TimeSlotsState extends State<TimeSlots> {
                     formattedEndTime == null
                         ? Container()
                         : Text('End time : $formattedEndTime'),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: screenSize.height * 0.01,
                     ),
@@ -181,7 +181,7 @@ class _TimeSlotsState extends State<TimeSlots> {
                                     tokens--;
                                   });
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_downward,
                                 )),
                             SizedBox(
@@ -201,7 +201,7 @@ class _TimeSlotsState extends State<TimeSlots> {
                                     tokens++;
                                   });
                                 },
-                                icon: Icon(Icons.arrow_upward))
+                                icon: const Icon(Icons.arrow_upward))
                           ],
                         )
                       ],
@@ -219,10 +219,10 @@ class _TimeSlotsState extends State<TimeSlots> {
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
                             backgroundColor: themeColor,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
-                        child: Text(
+                        child: const Text(
                           'Add time slot',
                           style: TextStyle(color: Colors.white, fontSize: 16.0),
                         )),
@@ -233,9 +233,9 @@ class _TimeSlotsState extends State<TimeSlots> {
                 height: screenSize.height * 0.01,
               ),
               ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 0.0),
+                constraints: const BoxConstraints(minHeight: 0.0),
                 child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: timeslots.length,
                     itemBuilder: (context, index) {
@@ -266,19 +266,19 @@ class _TimeSlotsState extends State<TimeSlots> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AnimatedCheck(
+                              builder: (context) => const AnimatedCheck(
                                     message:
                                         "Appointment schedule added successfully.",
                                   )));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeColor,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0))),
                       minimumSize: const Size.fromHeight(50),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Save',
                       style: TextStyle(
                           color: Colors.white,

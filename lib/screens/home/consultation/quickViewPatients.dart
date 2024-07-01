@@ -25,7 +25,7 @@ class _QuickViewPatinetsState extends State<QuickViewPatinets> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FloatingActionButton(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             onPressed: () {
               if (patientIndex != 0) {
                 setState(() {
@@ -34,7 +34,7 @@ class _QuickViewPatinetsState extends State<QuickViewPatinets> {
               }
             },
             backgroundColor: patientIndex == 0 ? Colors.grey : themeColor,
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),
@@ -43,7 +43,7 @@ class _QuickViewPatinetsState extends State<QuickViewPatinets> {
             width: screenSize.width * 0.3,
           ),
           FloatingActionButton(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             onPressed: () {
               if (patientIndex != (patientCount - 1)) {
                 setState(() {
@@ -53,7 +53,7 @@ class _QuickViewPatinetsState extends State<QuickViewPatinets> {
             },
             backgroundColor:
                 patientIndex == (patientCount - 1) ? Colors.grey : themeColor,
-            child: Icon(
+            child: const Icon(
               Icons.arrow_forward,
               color: Colors.white,
             ),
@@ -64,11 +64,11 @@ class _QuickViewPatinetsState extends State<QuickViewPatinets> {
           future: fetchPatients(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text('Something went wrong '),
               );
             } else {

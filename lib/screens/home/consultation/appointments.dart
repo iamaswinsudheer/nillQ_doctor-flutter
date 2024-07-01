@@ -39,7 +39,7 @@ class _AppointmnetsState extends State<Appointmnets> {
             future: _futureAppointments,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
@@ -48,7 +48,7 @@ class _AppointmnetsState extends State<Appointmnets> {
                 );
               } else {
                 List<Map<String, String>> patinets = snapshot.data!;
-                if (patinets.length == 0) {
+                if (patinets.isEmpty) {
                   return Center(
                     child: Text(
                       'No scheduled appointments',

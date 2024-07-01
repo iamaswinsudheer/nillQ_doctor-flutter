@@ -19,7 +19,7 @@ class _CustomDatesState extends State<CustomDates> {
     'Every Friday',
     'Every Saturday',
   ];
-  List<bool> _selectedDays = List.filled(7, false);
+  final List<bool> _selectedDays = List.filled(7, false);
 
   @override
   Widget build(BuildContext context) {
@@ -51,17 +51,17 @@ class _CustomDatesState extends State<CustomDates> {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TimeSlots()));
+                    MaterialPageRoute(builder: (context) => const TimeSlots()));
               },
-              child: Text(
-                'Continue',
-                style: TextStyle(fontSize: 18.0, color: Colors.white),
-              ),
               style: ElevatedButton.styleFrom(
                   backgroundColor: themeColor,
                   minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)))),
+              child: const Text(
+                'Continue',
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              ),
             ),
           )
         ],

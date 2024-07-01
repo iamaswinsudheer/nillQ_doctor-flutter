@@ -45,7 +45,7 @@ class _AppointmentSchedulesState extends State<AppointmentSchedules> {
             future: _futureSchedules,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
@@ -54,7 +54,7 @@ class _AppointmentSchedulesState extends State<AppointmentSchedules> {
                 );
               } else {
                 List<Map<String, String>> schedules = snapshot.data!;
-                if (schedules.length == 0) {
+                if (schedules.isEmpty) {
                   return Center(
                     child: Text(
                       'No scheduled appointments',
@@ -76,7 +76,7 @@ class _AppointmentSchedulesState extends State<AppointmentSchedules> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Appointmnets()));
+                                      builder: (context) => const Appointmnets()));
                             });
                       });
                 }

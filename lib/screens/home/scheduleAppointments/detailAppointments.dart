@@ -19,7 +19,7 @@ class _DetailAppoinmnetsState extends State<DetailAppoinmnets> {
             padding: EdgeInsets.only(right: screenSize.width * 0.03),
             child: IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete,
                   color: Colors.red,
                 )),
@@ -43,7 +43,7 @@ class _DetailAppoinmnetsState extends State<DetailAppoinmnets> {
               height: screenSize.height * 0.01,
             ),
             Text(
-              widget.appointments['customDays']!.length == 0
+              widget.appointments['customDays']!.isEmpty
                   ? '${widget.appointments['fromDate']} to ${widget.appointments['endDate']}'
                   : widget.appointments['customDays']!,
               style: TextStyle(color: Colors.grey[800], fontSize: 18.0),

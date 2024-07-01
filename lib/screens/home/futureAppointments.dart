@@ -11,8 +11,8 @@ class FutureAppointments extends StatefulWidget {
 
 class _FutureAppointmentsState extends State<FutureAppointments> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
-  DateTime _focusedDay = DateTime.now().add(Duration(days: 1));
-  DateTime? _selectedDay = DateTime.now().add(Duration(days: 1));
+  DateTime _focusedDay = DateTime.now().add(const Duration(days: 1));
+  DateTime? _selectedDay = DateTime.now().add(const Duration(days: 1));
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +53,14 @@ class _FutureAppointmentsState extends State<FutureAppointments> {
               shape: BoxShape.circle,
               color: Colors.pink[200],
             ),
-            selectedDecoration: BoxDecoration(
+            selectedDecoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: themeColor,
             ),
-            defaultDecoration: BoxDecoration(
+            defaultDecoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            weekendDecoration: BoxDecoration(
+            weekendDecoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
           ),
@@ -75,9 +75,9 @@ class _FutureAppointmentsState extends State<FutureAppointments> {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(20.0)),
               formatButtonPadding:
-                  EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
               formatButtonTextStyle:
-                  TextStyle(color: Colors.black, letterSpacing: 1.0)),
+                  const TextStyle(color: Colors.black, letterSpacing: 1.0)),
         ),
       ]),
     );
