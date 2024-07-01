@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:nillq_doctor_app/services/docIdManager.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

@@ -4,8 +4,12 @@ class DocIdManager {
   late String key;
   late SharedPreferences prefs;
 
-  _initialize() async {
+  DocIdManager() {
     key = 'doctorId';
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
     prefs = await SharedPreferences.getInstance();
   }
 
@@ -25,7 +29,7 @@ class DocIdManager {
     }
   }
 
-  String readDocId(){
+  String readDocId() {
     try {
       return prefs.getString(key)!;
     } catch (error) {
