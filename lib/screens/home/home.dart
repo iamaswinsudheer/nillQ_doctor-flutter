@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nillq_doctor_app/screens/home/consultation/quickViewPatients.dart';
-import 'package:nillq_doctor_app/screens/home/scheduleAppointments/availableDays.dart';
+import 'package:nillq_doctor_app/screens/home/scheduleAppointments/datePicker.dart';
 import 'package:nillq_doctor_app/screens/home/userProfile/userProfile.dart';
 import 'package:nillq_doctor_app/services/fetchAppointmentsSchedules.dart';
 import 'package:nillq_doctor_app/shared/constants.dart';
@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const SelectDays()));
+                context, MaterialPageRoute(builder: (context) => const DatePicker()));
           },
           backgroundColor: themeColor,
           child: const Icon(

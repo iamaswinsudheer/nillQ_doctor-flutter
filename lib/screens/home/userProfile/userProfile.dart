@@ -178,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['phone_number'].toString()!,
+                        docDetails['phone_number'].toString(),
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -246,7 +246,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['year_of_registration'].toString()!,
+                        docDetails['year_of_registration'].toString(),
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,
@@ -314,7 +314,7 @@ class _UserProfileState extends State<UserProfile> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        docDetails['zip_code'].toString()!,
+                        docDetails['zip_code'].toString(),
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 16.0,

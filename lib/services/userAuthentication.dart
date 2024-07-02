@@ -25,11 +25,11 @@ class Authentication {
   }
 
   //Validates the access token if present.
-  Future<String?> validateToken(String token) async {
+  Future<String> validateToken() async {
+    TokenManager tokenManager = TokenManager();
     String api = "http://$ip:7000/api/auth/validate-token";
-
+    String token = await tokenManager.readToken();
     try {
-      print('token from validation fun: $token');
       final response = await http.post(Uri.parse(api), body: {"token": token.toString()});
       if (response.statusCode == 200 || response.statusCode == 401) {
         Map<String, dynamic> tokenStatus = jsonDecode(response.body);

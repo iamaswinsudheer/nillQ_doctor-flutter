@@ -11,39 +11,45 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-  TokenManager tokenManager = TokenManager();
-
-  Authentication authentication = Authentication();
+  
+  //function to check whether user is authenticated
+  Future<bool> isUserAuthenticated() async {
+    TokenManager tokenManager = TokenManager();
+    Authentication authentication = Authentication();
+    bool tokenPresent = await tokenManager.isTokenPresent();
+    String tokenStatus = await authentication.validateToken();
+    if (tokenPresent && tokenStatus == 'valid') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (tokenManager.isTokenPresent()) {
-      return Scaffold(
-        body: FutureBuilder(
-            future: authentication.validateToken(tokenManager.readToken()),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(themeColor),
-                  ),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Something went wrong!!!'),
-                );
+    return Scaffold(
+      body: FutureBuilder(
+          future: isUserAuthenticated(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(themeColor),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Something went wrong!!!'),
+              );
+            } else {
+              bool AuthenticatedUser = snapshot.data!;
+              if (AuthenticatedUser) {
+                return BottomNavBar();
               } else {
-                String responseMessage = snapshot.data!;
-                if (responseMessage == 'valid') {
-                  return BottomNavBar();
-                } else {
-                  return Login();
-                }
+                return Login();
               }
-            }),
-      );
-    } else {
-      return Login();
-    }
+            }
+          }),
+    );
   }
 }
