@@ -39,7 +39,7 @@ class _WrapperState extends State<Wrapper> {
               );
             } else if (snapshot.hasError) {
               return Center(
-                child: Text('Something went wrong!!!'),
+                child: Text(snapshot.error.toString()),
               );
             } else {
               bool AuthenticatedUser = snapshot.data!;
